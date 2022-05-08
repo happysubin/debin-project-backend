@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.server.domain.Member;
 import project.server.dto.member.*;
+import project.server.exception.member.MemberNotFoundException;
 import project.server.repository.member.MemberRepository;
 
 import java.util.Optional;
@@ -17,7 +18,9 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     public GetMemberRes getMember(Long memberId){
-        Member findMember = memberRepository.findById(memberId).orElseThrow();
+        Member findMember = memberRepository.findById(memberId)
+                .orElseThrow(()->new MemberNotFoundException());
+
         GetMemberRes getMemberRes = new GetMemberRes(findMember);
         return getMemberRes;
     }
@@ -38,7 +41,9 @@ public class MemberService {
 
     @Transactional(readOnly = false)
     public PutMemberRes updateMember(PutMemberReq putMemberReq,Long userId){
-        Member findMember = memberRepository.findById(userId).orElseThrow();
+        Member findMember = memberRepository.findById(userId)
+                .orElseThrow(MemberNotFoundException::new);
+
         findMember.updateMemberInfo(putMemberReq.getEmail(),
                 putMemberReq.getLoginId(),
                 putMemberReq.getUserName(),
@@ -51,10 +56,11 @@ public class MemberService {
 
     @Transactional(readOnly = false)
     public PatchMemberRes changeMemberStatusToInActive(Long userId){
-        Member findMember = memberRepository.findById(userId).orElseThrow();
+        Member findMember = memberRepository.findById(userId)
+                .orElseThrow(MemberNotFoundException::new);
+
         findMember.changeStatusToInActive();
         PatchMemberRes patchMemberRes = new PatchMemberRes(findMember);
         return patchMemberRes;
     }
-
 }
