@@ -20,11 +20,14 @@ public class PostMemberReq {
     }
 
     @Email
+    @NotBlank
     private String email;
 
+    @Size(min=6)
     @NotBlank
     private String loginId;
 
+    @Size(min=6)
     @NotBlank
     private String userName;
 

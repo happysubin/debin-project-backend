@@ -8,7 +8,10 @@ public enum ErrorCode {
     SUCCESS("1000"),
 
     //
-    MEMBER_NOT_FOUND("U0001");
+    MEMBER_NOT_FOUND("U0001"),
+    DTO_NOT_FIT_SPEC("U002");
+
+
 
 
 

@@ -1,19 +1,36 @@
 package project.server.domain;
 
 import lombok.Getter;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 @Entity
 @Getter
-@Table(name="MEMBER")
+@Table(name="MEMBER",uniqueConstraints = {
+        @UniqueConstraint(name="EMAIL_UNIQUE", columnNames =  {"EMAIL"}),
+        @UniqueConstraint(name ="LOGINID_UNIQUE",columnNames = {"LOGINID"})})
 public class Member {
 
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String email;
+
+    private String loginId;
+
+    private String userName;
+
+    private String name;
+
+    private String password;
+
+    private String status;
+
     public Member(){
-
     }
-
 
     public Member(String email, String loginId, String userName, String name, String password,String status){
         this.email = email;
@@ -39,22 +56,6 @@ public class Member {
     public void changeStatusToActive(){
         this.status = "ACTIVE";
     }
-
-    @Id
-    @GeneratedValue
-    private Long id;
-
-    private String email;
-
-    private String loginId;
-
-    private String userName;
-
-    private String name;
-
-    private String password;
-
-    private String status;
 
 
 }

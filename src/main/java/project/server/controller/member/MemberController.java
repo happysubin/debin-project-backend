@@ -1,14 +1,16 @@
 package project.server.controller.member;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import project.server.domain.Member;
 import project.server.dto.member.*;
 import project.server.service.member.MemberService;
 
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
+@Slf4j
 public class MemberController {
 
     private final MemberService memberService;
@@ -20,12 +22,13 @@ public class MemberController {
     }
 
     @PostMapping
-    public void createMember(@RequestBody PostMemberReq postUserReq){
+    public void createMember(@Validated @RequestBody PostMemberReq postUserReq){
+
         memberService.createMember(postUserReq);
     }
 
     @PutMapping("/{userId}")
-    public PutMemberRes updateMemberInfo(@RequestBody PutMemberReq putMemberReq, @PathVariable Long userId){
+    public PutMemberRes updateMemberInfo(@Validated @RequestBody PutMemberReq putMemberReq, @PathVariable Long userId){
         PutMemberRes putMemberRes = memberService.updateMember(putMemberReq, userId);
         return putMemberRes;
     }
