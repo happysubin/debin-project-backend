@@ -22,9 +22,8 @@ public class MemberController {
     }
 
     @PostMapping
-    public void createMember(@Validated @RequestBody PostMemberReq postUserReq){
-
-        memberService.createMember(postUserReq);
+    public PostMemberRes createMember(@Validated @RequestBody PostMemberReq postUserReq){
+        return memberService.createMember(postUserReq);
     }
 
     @PutMapping("/{userId}")

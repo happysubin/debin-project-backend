@@ -26,7 +26,7 @@ public class MemberService {
     }
 
     @Transactional(readOnly = false)
-    public void createMember(PostMemberReq postUserReq){
+    public PostMemberRes createMember(PostMemberReq postUserReq){
 
         //나중에 빌더 패턴으로 수정하자.
         Member member = new Member(postUserReq.getEmail(),
@@ -36,7 +36,11 @@ public class MemberService {
                 postUserReq.getPassword(),
                 postUserReq.getStatus());
 
-        memberRepository.save(member);
+        Member saveMember = memberRepository.save(member);
+
+        PostMemberRes postMemberRes= new PostMemberRes(saveMember);
+
+        return postMemberRes;
     }
 
     @Transactional(readOnly = false)
