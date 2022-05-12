@@ -10,7 +10,7 @@ import javax.validation.constraints.*;
 @Getter
 @Table(name="MEMBER",uniqueConstraints = {
         @UniqueConstraint(name="EMAIL_UNIQUE", columnNames =  {"EMAIL"}),
-        @UniqueConstraint(name ="LOGINID_UNIQUE",columnNames = {"LOGINID"})})
+        @UniqueConstraint(name ="nickName_UNIQUE",columnNames = {"nickName"})})
 public class Member {
 
     @Id
@@ -19,9 +19,7 @@ public class Member {
 
     private String email;
 
-    private String loginId;
-
-    private String userName;
+    private String nickName;
 
     private String name;
 
@@ -32,19 +30,17 @@ public class Member {
     public Member(){
     }
 
-    public Member(String email, String loginId, String userName, String name, String password,String status){
+    public Member(String email, String nickName, String name, String password,String status){
         this.email = email;
-        this.loginId = loginId;
-        this.userName = userName;
+        this.nickName = nickName;
         this.name = name;
         this.password = password;
         this.status = status;
     }
 
-    public void updateMemberInfo(String email, String loginId, String userName, String name, String password){
+    public void updateMemberInfo(String email, String nickName, String name, String password){
         this.email = email;
-        this.loginId = loginId;
-        this.userName = userName;
+        this.nickName = nickName;
         this.name = name;
         this.password = password;
     }

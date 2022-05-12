@@ -30,8 +30,7 @@ public class MemberService {
 
         //나중에 빌더 패턴으로 수정하자.
         Member member = new Member(postUserReq.getEmail(),
-                postUserReq.getLoginId(),
-                postUserReq.getUserName(),
+                postUserReq.getNickName(),
                 postUserReq.getName(),
                 postUserReq.getPassword(),
                 postUserReq.getStatus());
@@ -49,8 +48,7 @@ public class MemberService {
                 .orElseThrow(MemberNotFoundException::new);
 
         findMember.updateMemberInfo(putMemberReq.getEmail(),
-                putMemberReq.getLoginId(),
-                putMemberReq.getUserName(),
+                putMemberReq.getNickName(),
                 putMemberReq.getName(),
                 putMemberReq.getPassword());
 

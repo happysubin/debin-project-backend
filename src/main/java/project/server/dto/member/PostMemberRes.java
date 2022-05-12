@@ -16,8 +16,7 @@ public class PostMemberRes {
 
     public PostMemberRes(Member member){
         this.email = member.getEmail();
-        this.loginId = member.getLoginId();
-        this.userName = member.getUserName();
+        this.nickName = member.getNickName();
         this.name = member.getName();
         this.password = member.getPassword();
         this.status = member.getStatus();
@@ -27,9 +26,7 @@ public class PostMemberRes {
 
     private String email;
 
-    private String loginId;
-
-    private String userName;
+    private String nickName;
 
     private String name;
 

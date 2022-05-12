@@ -10,10 +10,11 @@ import javax.validation.constraints.*;
 @Setter
 public class PostMemberReq {
 
-    public PostMemberReq(String email, String loginId, String userName, String name, String password){
+    public static PostMemberReq testData = new PostMemberReq("123@gmail.com", "user12345", "name12345","password12345");
+
+    public PostMemberReq(String email, String nickName, String name, String password){
         this.email = email;
-        this.loginId = loginId;
-        this.userName = userName;
+        this.nickName = nickName;
         this.name = name;
         this.password = password;
         this.status = "ACTIVE";
@@ -23,13 +24,10 @@ public class PostMemberReq {
     @NotBlank
     private String email;
 
-    @Size(min=6)
-    @NotBlank
-    private String loginId;
 
     @Size(min=6)
     @NotBlank
-    private String userName;
+    private String nickName;
 
     @NotBlank
     private String name;
@@ -40,4 +38,6 @@ public class PostMemberReq {
 
     @NotEmpty
     private String status;
+
+
 }

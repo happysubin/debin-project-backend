@@ -13,10 +13,9 @@ import javax.validation.constraints.Size;
 @Setter
 public class PutMemberReq {
 
-    public PutMemberReq(String email, String loginId, String userName, String name, String password){
+    public PutMemberReq(String email, String nickName, String name, String password){
         this.email = email;
-        this.loginId = loginId;
-        this.userName = userName;
+        this.nickName = nickName;
         this.name = name;
         this.password = password;
     }
@@ -28,11 +27,7 @@ public class PutMemberReq {
 
     @Size(min=6)
     @NotBlank
-    private String loginId;
-
-    @Size(min=6)
-    @NotBlank
-    private String userName;
+    private String nickName;
 
     @NotBlank
     private String name;
@@ -40,5 +35,4 @@ public class PutMemberReq {
     @NotBlank
     @Size(min=10)
     private String password;
-
 }
