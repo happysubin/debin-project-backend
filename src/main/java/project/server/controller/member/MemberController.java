@@ -14,11 +14,16 @@ import project.server.service.member.MemberService;
 public class MemberController {
 
     private final MemberService memberService;
-
+/*
     @ResponseBody
     @GetMapping("/{userId}")
-    public GetMemberRes getListMembers(@PathVariable Long userId){
+    public GetMemberRes getMember(@PathVariable Long userId){
         return memberService.getMember(userId);
+    }
+*/
+    @GetMapping("/{nickName}")
+    public GetMemberRes getMemberByNickName(@PathVariable String nickName){
+        return memberService.getMemberByNickName(nickName);
     }
 
     @PostMapping

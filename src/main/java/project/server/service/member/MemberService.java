@@ -65,4 +65,10 @@ public class MemberService {
         PatchMemberRes patchMemberRes = new PatchMemberRes(findMember);
         return patchMemberRes;
     }
+
+    public GetMemberRes getMemberByNickName(String nickName) {
+        Member member = memberRepository.findByNickName(nickName).orElseThrow(MemberNotFoundException::new);
+        return new GetMemberRes(member);
+
+    }
 }
